@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React, { Children, Component } from 'react';
 import { StyleSheet, css } from 'aphrodite';
 import ScrollLock from 'react-scrolllock';
+import PrismaZoom from 'react-prismazoom';
 import { StyleSheet as StyleSheet$1, css as css$1 } from 'aphrodite/no-important';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import { render, unmountComponentAtNode } from 'react-dom';
@@ -1282,18 +1283,22 @@ var Lightbox = function (_Component) {
 			return React.createElement(
 				'figure',
 				{ className: css(this.classes.figure) },
-				React.createElement('img', {
-					className: css(this.classes.image, imageLoaded && this.classes.imageLoaded),
-					onClick: onClickImage,
-					sizes: sizes,
-					alt: image.alt,
-					src: image.src,
-					srcSet: sourceSet,
-					style: {
-						cursor: onClickImage ? 'pointer' : 'auto',
-						maxHeight: 'calc(100vh - ' + heightOffset + ')'
-					}
-				})
+				React.createElement(
+					PrismaZoom,
+					null,
+					React.createElement('img', {
+						className: css(this.classes.image, imageLoaded && this.classes.imageLoaded),
+						onClick: onClickImage,
+						sizes: sizes,
+						alt: image.alt,
+						src: image.src,
+						srcSet: sourceSet,
+						style: {
+							cursor: onClickImage ? 'pointer' : 'auto',
+							maxHeight: 'calc(100vh - ' + heightOffset + ')'
+						}
+					})
+				)
 			);
 		}
 	}, {
@@ -1451,7 +1456,7 @@ var defaultStyles = {
 	image: {
 		display: 'block', // removes browser default gutter
 		height: 'auto',
-		margin: '0 auto', // maintain center on very short screens OR very narrow image
+		// margin: '0 auto', // maintain center on very short screens OR very narrow image
 		maxWidth: '100%',
 
 		// disable user select

@@ -12,6 +12,7 @@ const globals = {
   aphrodite: 'aphrodite',
   'aphrodite/no-important': 'aphrodite',
   'react-scrolllock': 'ScrollLock',
+  'react-prismazoom': 'PrismaZoom',
   'react-transition-group': 'ReactTransitionGroup',
   'react-spinners': 'BounceLoader'
 };

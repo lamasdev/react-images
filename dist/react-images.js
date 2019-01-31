@@ -1,12 +1,13 @@
 (function (global, factory) {
-	typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory(require('prop-types'), require('react'), require('aphrodite'), require('react-scrolllock'), require('aphrodite/no-important'), require('react-transition-group'), require('react-dom')) :
-	typeof define === 'function' && define.amd ? define(['prop-types', 'react', 'aphrodite', 'react-scrolllock', 'aphrodite/no-important', 'react-transition-group', 'react-dom'], factory) :
-	(global.Lightbox = factory(global.PropTypes,global.React,global.aphrodite,global.ScrollLock,global.aphrodite,global.ReactTransitionGroup,global.ReactDOM));
-}(this, (function (PropTypes,React,aphrodite,ScrollLock,noImportant,reactTransitionGroup,reactDom) { 'use strict';
+	typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory(require('prop-types'), require('react'), require('aphrodite'), require('react-scrolllock'), require('react-prismazoom'), require('aphrodite/no-important'), require('react-transition-group'), require('react-dom')) :
+	typeof define === 'function' && define.amd ? define(['prop-types', 'react', 'aphrodite', 'react-scrolllock', 'react-prismazoom', 'aphrodite/no-important', 'react-transition-group', 'react-dom'], factory) :
+	(global.Lightbox = factory(global.PropTypes,global.React,global.aphrodite,global.ScrollLock,global.PrismaZoom,global.aphrodite,global.ReactTransitionGroup,global.ReactDOM));
+}(this, (function (PropTypes,React,aphrodite,ScrollLock,PrismaZoom,noImportant,reactTransitionGroup,reactDom) { 'use strict';
 
 PropTypes = PropTypes && PropTypes.hasOwnProperty('default') ? PropTypes['default'] : PropTypes;
 var React__default = 'default' in React ? React['default'] : React;
 ScrollLock = ScrollLock && ScrollLock.hasOwnProperty('default') ? ScrollLock['default'] : ScrollLock;
+PrismaZoom = PrismaZoom && PrismaZoom.hasOwnProperty('default') ? PrismaZoom['default'] : PrismaZoom;
 
 // ==============================
 // THEME
@@ -1284,18 +1285,22 @@ var Lightbox = function (_Component) {
 			return React__default.createElement(
 				'figure',
 				{ className: aphrodite.css(this.classes.figure) },
-				React__default.createElement('img', {
-					className: aphrodite.css(this.classes.image, imageLoaded && this.classes.imageLoaded),
-					onClick: onClickImage,
-					sizes: sizes,
-					alt: image.alt,
-					src: image.src,
-					srcSet: sourceSet,
-					style: {
-						cursor: onClickImage ? 'pointer' : 'auto',
-						maxHeight: 'calc(100vh - ' + heightOffset + ')'
-					}
-				})
+				React__default.createElement(
+					PrismaZoom,
+					null,
+					React__default.createElement('img', {
+						className: aphrodite.css(this.classes.image, imageLoaded && this.classes.imageLoaded),
+						onClick: onClickImage,
+						sizes: sizes,
+						alt: image.alt,
+						src: image.src,
+						srcSet: sourceSet,
+						style: {
+							cursor: onClickImage ? 'pointer' : 'auto',
+							maxHeight: 'calc(100vh - ' + heightOffset + ')'
+						}
+					})
+				)
 			);
 		}
 	}, {
@@ -1453,7 +1458,7 @@ var defaultStyles = {
 	image: {
 		display: 'block', // removes browser default gutter
 		height: 'auto',
-		margin: '0 auto', // maintain center on very short screens OR very narrow image
+		// margin: '0 auto', // maintain center on very short screens OR very narrow image
 		maxWidth: '100%',
 
 		// disable user select

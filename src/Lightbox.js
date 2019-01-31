@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { css, StyleSheet } from 'aphrodite';
 import ScrollLock from 'react-scrolllock';
+import PrismaZoom from 'react-prismazoom';
 
 import defaultTheme from './theme';
 import Arrow from './components/Arrow';
@@ -271,18 +272,20 @@ class Lightbox extends Component {
 					https://fb.me/react-unknown-prop is resolved
 					<Swipeable onSwipedLeft={this.gotoNext} onSwipedRight={this.gotoPrev} />
 				*/}
-				<img
-					className={css(this.classes.image, imageLoaded && this.classes.imageLoaded)}
-					onClick={onClickImage}
-					sizes={sizes}
-					alt={image.alt}
-					src={image.src}
-					srcSet={sourceSet}
-					style={{
-						cursor: onClickImage ? 'pointer' : 'auto',
-						maxHeight: `calc(100vh - ${heightOffset})`,
-					}}
-				/>
+				<PrismaZoom>
+					<img
+						className={css(this.classes.image, imageLoaded && this.classes.imageLoaded)}
+						onClick={onClickImage}
+						sizes={sizes}
+						alt={image.alt}
+						src={image.src}
+						srcSet={sourceSet}
+						style={{
+							cursor: onClickImage ? 'pointer' : 'auto',
+							maxHeight: `calc(100vh - ${heightOffset})`,
+						}}
+					/>
+				</PrismaZoom>
 			</figure>
 		);
 	}
@@ -432,7 +435,7 @@ const defaultStyles = {
 	image: {
 		display: 'block', // removes browser default gutter
 		height: 'auto',
-		margin: '0 auto', // maintain center on very short screens OR very narrow image
+		// margin: '0 auto', // maintain center on very short screens OR very narrow image
 		maxWidth: '100%',
 
 		// disable user select
